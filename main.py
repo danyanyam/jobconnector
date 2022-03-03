@@ -1,4 +1,3 @@
-# по get-запросам должен возвращать резюме людей.
 from typing import Dict as D
 from resume import ResumeHandler
 from fastapi import FastAPI
