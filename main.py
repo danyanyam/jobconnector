@@ -1,9 +1,12 @@
 # по get-запросам должен возвращать резюме людей.
-from database import resumes
+from typing import Dict as D
+from resume import ResumeHandler
 from fastapi import FastAPI
 import uvicorn
 
+
 app = FastAPI()
+rh = ResumeHandler()
 
 
 @app.get('/')
@@ -11,9 +14,14 @@ def get_root():
     pass
 
 
-@app.get('/resume')
-def get_resume():
-    return resumes[0]
+@app.post('/resume/filter')
+def post_filter(filters: D[str, str]):
+    return rh.filter(filters)
+
+
+@app.get('/filters')
+def get_filters():
+    return rh.get_filters()
 
 
 if __name__ == "__main__":
